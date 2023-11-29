@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InputPage = ({ onGenerate }) => {
+const InputPage = ({ onGenerate, onViewTickets }) => {
   const [quantity, setQuantity] = useState('');
   const [value, setValue] = useState('');
 
@@ -9,8 +9,8 @@ const InputPage = ({ onGenerate }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-200">
-      <div className="bg-white p-8 rounded-md shadow-md w-96">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
+      <div className="bg-white p-8 rounded-md shadow-md w-96 mb-16"> {/* Added mb-8 for margin-bottom */}
         <h1 className="text-2xl font-bold mb-4 text-center">Ticket/Stamp Generator</h1>
         <div className="mb-4">
           <label className="block text-gray-600 mb-2">Quantity:</label>
@@ -36,6 +36,15 @@ const InputPage = ({ onGenerate }) => {
         >
           Generate and Preview
         </button>
+      </div>
+      <div className="text-center">
+      <button
+  className="bg-green-500 text-white px-6 py-3 rounded text-lg" // Adjusted px, py, and added text-lg for font size
+  onClick={onViewTickets}
+>
+  View Generated Tickets
+</button>
+
       </div>
     </div>
   );

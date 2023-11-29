@@ -1,3 +1,5 @@
+// ticket.js
+
 const mongoose = require('mongoose');
 
 const ticketSchema = new mongoose.Schema({
@@ -14,7 +16,7 @@ const ticketSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: String, // You might want to use Date type depending on your requirements
+    type: Date, // Use Date type for the date field
     required: true,
   },
 });

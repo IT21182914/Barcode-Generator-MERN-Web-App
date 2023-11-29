@@ -1,5 +1,7 @@
+// server.js
+
 const express = require('express');
-const connectDB = require('./db/conn'); // Correct path to the conn.js file
+const connectDB = require('./db/conn');
 const ticketRoutes = require('./routes/ticketRoutes');
 const cors = require('cors');
 require('dotenv').config();
