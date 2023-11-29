@@ -1,23 +1,29 @@
 import React from 'react';
 import Barcode from 'react-barcode';
+import { format } from 'date-fns';
 
 const ConfirmationModal = ({ data, onClose, onPrint }) => {
   const barcodeValue = `BRHUGUGUG${data.quantity}`;
 
   const handlePrint = async () => {
     try {
+      // Send the data to the server for saving
       const response = await fetch('http://localhost:5000/api/tickets/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ quantity: data.quantity, value: data.value }),
+        body: JSON.stringify({
+          quantity: data.quantity,
+          value: data.value,
+          date: format(new Date(), 'yyyy-MM-dd HH:mm:ss'), // Include the date in the request
+        }),
       });
-  
+
       if (!response.ok) {
-        throw new Error('Error generating ticket');
+        throw new Error('Error generating or printing ticket');
       }
-  
+
       // Open the print dialog
       window.print();
       // Callback after printing (you can add additional logic as needed)
@@ -36,6 +42,9 @@ const ConfirmationModal = ({ data, onClose, onPrint }) => {
         <p>Value in Rupees: {data.value}</p>
         <p>Barcode: {barcodeValue}</p>
         <Barcode value={barcodeValue} />
+        <div className="text-center mt-4"> {/* Centered styling for the date */}
+          <p>Date: {format(new Date(), 'yyyy-MM-dd HH:mm:ss')}</p>
+        </div>
         <div className="flex justify-between mt-8">
           <button
             className="bg-green-500 text-white px-4 py-2 rounded"

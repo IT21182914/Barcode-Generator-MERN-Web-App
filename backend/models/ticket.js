@@ -13,6 +13,10 @@ const ticketSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: String, // You might want to use Date type depending on your requirements
+    required: true,
+  },
 });
 
 const Ticket = mongoose.model('Ticket', ticketSchema);
