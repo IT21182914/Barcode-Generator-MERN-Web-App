@@ -30,7 +30,7 @@ const ConfirmationModal = ({ data, onClose, onPrint }) => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-8 rounded shadow-md">
+      <div className="bg-white p-8 rounded shadow-md" id="print-section">
         <h2 className="text-xl font-bold mb-4">Print Confirmation</h2>
         <p>Quantity: {data.quantity}</p>
         <p>Value in Rupees: {data.value}</p>
@@ -51,6 +51,16 @@ const ConfirmationModal = ({ data, onClose, onPrint }) => {
           </button>
         </div>
       </div>
+
+      <style>
+        {`
+          @media print {
+            #print-section button {
+              display: none;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
